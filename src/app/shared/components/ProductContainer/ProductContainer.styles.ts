@@ -22,18 +22,16 @@ export const ProductImage = styled.img`
   padding: 12px;
 `;
 
-export const ProductMainInfo = styled.div`
-  .title-and-price {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
+export const TitleAndPrice = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+`;
 
-  .description {
-    font-size: 10px;
-    color: #2c2c2c;
-  }
+export const Description = styled.div`
+  font-size: 10px;
+  color: #2c2c2c;
 `;
 
 export const ProductPrice = styled.span`

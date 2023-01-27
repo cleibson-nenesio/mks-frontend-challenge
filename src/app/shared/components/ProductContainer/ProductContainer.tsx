@@ -2,15 +2,17 @@ import { ProductDataTypes } from "../../../types/product-data";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../../store/features/cart/cart-slice";
 import { useStateSelector } from "../../hooks/useStateSelector";
-import { Skeleton } from "@mui/material";
+import { Skeleton, Snackbar, Alert } from "@mui/material";
 import BuyButton from "../AddToCartButton/AddToCartButton";
 import {
   ProductBox,
-  ProductMainInfo,
   ProductImage,
   ProductPrice,
+  TitleAndPrice,
+  Description,
 } from "./ProductContainer.styles";
 import { ShoppingBagOutline } from "@styled-icons/evaicons-outline";
+import { useState } from "react";
 
 type ProductBoxTypes = {
   products: ProductDataTypes[];
@@ -28,14 +30,36 @@ skeletons.fill(
 
 const ProductContainer = ({ products }: ProductBoxTypes) => {
   const dispatch = useDispatch();
-  const isLoading = useStateSelector((state) => state.products.isLoading);
+  const productsStates = useStateSelector((state) => state.products);
+  const [isSnackOpen, setIsSnackOpen] = useState(false);
 
-  if (isLoading) {
+  const closeSnackBar = () => {
+    setIsSnackOpen(false);
+  };
+
+  const openSnackBar = () => {
+    setIsSnackOpen(true);
+  };
+
+  const addProductToCart = (product: ProductDataTypes) => {
+    dispatch(addProduct(product));
+    openSnackBar();
+  };
+
+  if (productsStates.isLoading) {
     return (
       <>
         {skeletons.map((skeleton, index) => (
           <div key={index}>{skeleton}</div>
         ))}
+      </>
+    );
+  }
+
+  if (productsStates.status == "rejected") {
+    return (
+      <>
+        <h2>Houve algum erro...</h2>
       </>
     );
   }
@@ -46,21 +70,35 @@ const ProductContainer = ({ products }: ProductBoxTypes) => {
         return (
           <ProductBox key={product.id}>
             <ProductImage src={product.photo} alt={product.name} />
-            <ProductMainInfo>
-              <div className="title-and-price">
+            <div>
+              <TitleAndPrice>
                 <p>{product.name}</p>
                 <ProductPrice>R${product.price * 1}</ProductPrice>
-              </div>
+              </TitleAndPrice>
 
-              <div className="description">{product.description}</div>
-            </ProductMainInfo>
-            <BuyButton onClick={() => dispatch(addProduct(product))}>
+              <Description>{product.description}</Description>
+            </div>
+            <BuyButton onClick={() => addProductToCart(product)}>
               <ShoppingBagOutline width={18} />
               Comprar
             </BuyButton>
           </ProductBox>
         );
       })}
+
+      <Snackbar
+        open={isSnackOpen}
+        autoHideDuration={1500}
+        onClose={closeSnackBar}
+      >
+        <Alert
+          onClose={closeSnackBar}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Produto adicionado ao carrinho
+        </Alert>
+      </Snackbar>
     </>
   );
 };

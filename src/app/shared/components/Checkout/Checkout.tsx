@@ -19,6 +19,10 @@ const Checkout = () => {
     dispatch(getTotal());
   }, [cart.products]);
 
+  const CloseCheckout = () => {
+    dispatch(closeCart())
+  }
+
   cart.isOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto'
 
   return (
@@ -29,7 +33,7 @@ const Checkout = () => {
           de compras
         </h3>
 
-        <CloseButton type="button" onClick={() => dispatch(closeCart())}>
+        <CloseButton onClick={CloseCheckout}>
           X
         </CloseButton>
       </CheckoutHeader>

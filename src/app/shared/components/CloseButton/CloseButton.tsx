@@ -1,6 +1,11 @@
 import { DeleteButton } from "./CloseButton.styles";
 
-const CloseButton = (props: any) => {
+type CloseButtonTypes = {
+  onClick: () => void,
+  children: React.ReactNode
+}
+
+const CloseButton = (props: CloseButtonTypes) => {
   return (
     <DeleteButton {...props}>
      {props.children}

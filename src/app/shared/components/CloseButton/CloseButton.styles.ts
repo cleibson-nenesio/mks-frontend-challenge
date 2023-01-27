@@ -1,14 +1,8 @@
 import styled from "styled-components";
-import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
-type CloseButtonTypes = {
-    width: number;
-    height: number;
-}
-
-export const DeleteButton = styled.button<CloseButtonTypes>`
-  width: ${({ width }) => width ? `${width}px` :  '15px'};
-  height: ${({ height }) => height ? `${height}px` :  '15px'};
+export const DeleteButton = styled.button`
+  width: 15px;
+  height: 15px;
   display: flex;
   justify-content: center;
   align-items: center;

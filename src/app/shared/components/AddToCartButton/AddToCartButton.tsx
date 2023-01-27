@@ -1,6 +1,11 @@
 import { AddToCart } from "./AddToCartButton.styles";
 
-const AddToCartButton = (props: any) => {
+type AddToCartButtonTypes = {
+  onClick: () => void,
+  children: React.ReactNode
+}
+
+const AddToCartButton = (props: AddToCartButtonTypes) => {
   return <AddToCart {...props}>{props.children}</AddToCart>;
 };
 

@@ -10,6 +10,18 @@ import { CartProductList, DeleteProduct, Product, ManageQuantity } from "./Check
 const CheckoutProducts = ({ cartProducts }: { cartProducts: ProductDataTypes[] }) => {
   const dispatch = useDispatch();
 
+  const deleteProductFromList = (product: ProductDataTypes) => {
+    dispatch(deleteProduct(product))
+  }
+
+  const decreaseProductQuantity = (product: ProductDataTypes) => {
+    dispatch(removeProduct(product))
+  }
+
+  const increaseProductQuantity = (product: ProductDataTypes) => {
+    dispatch(addProduct(product))
+  }
+
   return (
     <CartProductList>
       {cartProducts?.length <= 0
@@ -17,7 +29,7 @@ const CheckoutProducts = ({ cartProducts }: { cartProducts: ProductDataTypes[] }
         : cartProducts?.map((product: ProductDataTypes) => {
             return (
               <Product key={product.id}>
-                <DeleteProduct onClick={() => dispatch(deleteProduct(product))}>
+                <DeleteProduct onClick={() => deleteProductFromList(product)}>
                   X
                 </DeleteProduct>
                 <img src={product.photo} alt={product.name} />
@@ -25,11 +37,11 @@ const CheckoutProducts = ({ cartProducts }: { cartProducts: ProductDataTypes[] }
 
                 <div>
                   <ManageQuantity>
-                    <button onClick={() => dispatch(removeProduct(product))}>
+                    <button onClick={() => decreaseProductQuantity(product)}>
                       -
                     </button>
                     <p>{product.cartQuantity}</p>
-                    <button onClick={() => dispatch(addProduct(product))}>
+                    <button onClick={() => increaseProductQuantity(product)}>
                       +
                     </button>
                   </ManageQuantity>

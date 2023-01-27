@@ -42,6 +42,7 @@ const productsSlice = createSlice({
       }),
       builder.addCase(productsFetch.rejected, (state) => {
         state.status = "rejected";
+        state.isLoading = false
       });
   },
 });
