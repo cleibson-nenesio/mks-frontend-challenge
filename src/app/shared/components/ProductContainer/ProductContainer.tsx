@@ -3,17 +3,17 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../../../store/features/cart/cart-slice";
 import { useStateSelector } from "../../hooks/useStateSelector";
 import { Skeleton } from "@mui/material";
-import BuyButton from "../BuyButton/BuyButton";
+import BuyButton from "../AddToCartButton/AddToCartButton";
 import {
-  ProductContainer,
+  ProductBox,
   ProductMainInfo,
   ProductImage,
   ProductPrice,
-} from "./ProductBox.styles";
+} from "./ProductContainer.styles";
 import { ShoppingBagOutline } from "@styled-icons/evaicons-outline";
 
 type ProductBoxTypes = {
-  productList: ProductDataTypes[];
+  products: ProductDataTypes[];
 };
 
 const skeletons = new Array(8);
@@ -26,7 +26,7 @@ skeletons.fill(
   />
 );
 
-const ProductBox = ({ productList }: ProductBoxTypes) => {
+const ProductContainer = ({ products }: ProductBoxTypes) => {
   const dispatch = useDispatch();
   const isLoading = useStateSelector((state) => state.products.isLoading);
 
@@ -42,9 +42,9 @@ const ProductBox = ({ productList }: ProductBoxTypes) => {
 
   return (
     <>
-      {productList.map((product: ProductDataTypes) => {
+      {products.map((product: ProductDataTypes) => {
         return (
-          <ProductContainer key={product.id}>
+          <ProductBox key={product.id}>
             <ProductImage src={product.photo} alt={product.name} />
             <ProductMainInfo>
               <div className="title-and-price">
@@ -58,11 +58,11 @@ const ProductBox = ({ productList }: ProductBoxTypes) => {
               <ShoppingBagOutline width={18} />
               Comprar
             </BuyButton>
-          </ProductContainer>
+          </ProductBox>
         );
       })}
     </>
   );
 };
 
-export default ProductBox;
+export default ProductContainer;

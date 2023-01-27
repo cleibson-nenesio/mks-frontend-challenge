@@ -6,9 +6,9 @@ import {
 } from "./Checkout.styles";
 import { useStateSelector } from "../../hooks/useStateSelector";
 import { useDispatch } from "react-redux";
-import CheckoutProducts from "../CheckoutProducts/CheckoutProducts";
 import { useEffect } from "react";
 import { closeCart, getTotal } from "../../../store/features/cart/cart-slice";
+import CheckoutProducts from "../CheckoutProducts/CheckoutProducts";
 import CloseButton from "../CloseButton/CloseButton";
 
 const Checkout = () => {

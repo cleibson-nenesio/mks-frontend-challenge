@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const AddToCartButton = styled.button`
+export const AddToCart = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

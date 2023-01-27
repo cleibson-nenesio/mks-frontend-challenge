@@ -1,13 +1,13 @@
 import { StyledProductList } from "./ProductList.styles";
-import ProductBox from "../ProductBox/ProductBox";
+import ProductBox from "../ProductContainer/ProductContainer";
 import { useStateSelector } from "../../hooks/useStateSelector";
 
 const ProductList = () => {
-  const productsList = useStateSelector((state) => state.products);
+  const products = useStateSelector((state) => state.products);
 
   return (
     <StyledProductList>
-      <ProductBox productList={productsList.data} />
+      <ProductBox products={products.data} />
     </StyledProductList>
   );
 };

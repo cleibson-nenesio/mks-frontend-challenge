@@ -77,35 +77,6 @@ export const Product = styled.div`
         font-size: 18px;
     }
 
-    .manage-quantity {
-        margin-right: 20px;
-        display: flex;
-        border: .3px solid #BFBFBF;
-        border-radius: 10px;
-        padding: 0 5px;
-        position: relative;
-
-        &::before {
-            content: "Qtd:";
-            position: absolute;
-            top: -20px;
-            left: 0;
-            font-size: 12px;
-        }
-        
-        p {
-            padding: 8px;
-            font-weight: 400;
-        }
-
-        button {
-            border: none;
-            padding: 8px;
-            background-color: transparent;
-            cursor: pointer;
-        }
-    }
-
     @media(max-width: 425px) {
         flex-direction: column;
 
@@ -124,6 +95,37 @@ export const Product = styled.div`
             border-radius: 5px;
         }
     }
+`
+
+export const ManageQuantity = styled.div`
+    margin-right: 20px;
+        display: flex;
+        border: .3px solid #BFBFBF;
+        border-radius: 10px;
+        padding: 0 5px;
+        position: relative;
+        width: 85px;
+
+        &::before {
+            content: "Qtd:";
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-size: 12px;
+        }
+        
+        p {
+            padding: 8px;
+            font-weight: 400;
+            max-width: 30px;
+        }
+
+        button {
+            border: none;
+            padding: 8px;
+            background-color: transparent;
+            cursor: pointer;
+        }
 `
 
 export const DeleteProduct = styled(CloseButton)`

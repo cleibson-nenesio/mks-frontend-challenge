@@ -5,16 +5,16 @@ import {
   removeProduct,
 } from "../../../store/features/cart/cart-slice";
 import { ProductDataTypes } from "../../../types/product-data";
-import { CartProductList, DeleteProduct, Product } from "./CheckoutProducts.styles";
+import { CartProductList, DeleteProduct, Product, ManageQuantity } from "./CheckoutProducts.styles";
 
-const CheckoutProducts = ({ cartProducts }: any) => {
+const CheckoutProducts = ({ cartProducts }: { cartProducts: ProductDataTypes[] }) => {
   const dispatch = useDispatch();
 
   return (
     <CartProductList>
-      {cartProducts.length <= 0
+      {cartProducts?.length <= 0
         ? "Adicione itens ao carrinho!"
-        : cartProducts.map((product: ProductDataTypes) => {
+        : cartProducts?.map((product: ProductDataTypes) => {
             return (
               <Product key={product.id}>
                 <DeleteProduct onClick={() => dispatch(deleteProduct(product))}>
@@ -24,7 +24,7 @@ const CheckoutProducts = ({ cartProducts }: any) => {
                 <h3>{product.name}</h3>
 
                 <div>
-                  <div className="manage-quantity">
+                  <ManageQuantity>
                     <button onClick={() => dispatch(removeProduct(product))}>
                       -
                     </button>
@@ -32,7 +32,7 @@ const CheckoutProducts = ({ cartProducts }: any) => {
                     <button onClick={() => dispatch(addProduct(product))}>
                       +
                     </button>
-                  </div>
+                  </ManageQuantity>
                   <span>R${product.price * 1}</span>
                 </div>
               </Product>

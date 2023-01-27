@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ProductContainer = styled.div`
+export const ProductBox = styled.div`
   max-width: 218px;
   height: 350px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.135216);
