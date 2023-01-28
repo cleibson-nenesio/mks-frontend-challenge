@@ -15,7 +15,7 @@ Este projeto faz parte de um teste técnico, feito pela empresa Mks Sistemas.
 
 Para baixar e rodar este projeto em sua máquina localmente, basta clonar o projeto, usando o comando git.
 ```
-git clone https://github.com/cleibson-nenesio/pokeapi-pokedex.git
+git clone https://github.com/cleibson-nenesio/mks-frontend-challenge.git
 ```
 Após baixado os arquivos do repositório, abra-o com seu editor de código e instale os pacotes, usando o seguinte comando em seu terminal.
 ```
